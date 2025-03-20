@@ -19,7 +19,12 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products }) => {
         return (
           <article key={productId} className="group relative">
             <Link href={`/products/${productId}`}>
-              <Card className="transform group-hover:shadow-xl transition-shadow duration-500">
+              <Card
+                className="transform group-hover:shadow-xl transition-shadow duration-500
+                bg-white/85 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
+              >
                 <CardContent className="p-4">
                   <div className="relative h-64 md:h-48 rounded overflow-hidden ">
                     <Image
@@ -32,8 +37,16 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products }) => {
                     />
                   </div>
                   <div className="mt-4 text-center">
-                    <h2 className="text-lg  capitalize">{name}</h2>
-                    <p className="text-muted-foreground  mt-2">
+                    <h2
+                      className="text-lg capitalize font-medium
+                      text-emerald-800 dark:text-sky-300"
+                    >
+                      {name}
+                    </h2>
+                    <p
+                      className="mt-2 font-medium
+                      text-amber-800 dark:text-cyan-400"
+                    >
                       {dollarsAmount}
                     </p>
                   </div>

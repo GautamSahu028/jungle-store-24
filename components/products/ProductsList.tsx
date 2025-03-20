@@ -20,9 +20,14 @@ const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
         return (
           <article key={productId} className="group relative">
             <Link href={`/products/${productId}`}>
-              <Card className="transform group-hover:shadow-xl transition-shadow duration-500">
+              <Card
+                className="transform group-hover:shadow-xl transition-shadow duration-500
+                bg-white/85 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
+              >
                 <CardContent className="p-8 gap-y-4 grid md:grid-cols-3">
-                  <div className="relative h-64  md:h-48 md:w-48">
+                  <div className="relative h-64 md:h-48 md:w-48">
                     <Image
                       src={image}
                       alt={name}
@@ -34,10 +39,17 @@ const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
                   </div>
 
                   <div>
-                    <h2 className="text-xl font-semibold capitalize">{name}</h2>
-                    <h4 className="text-muted-foreground">{company}</h4>
+                    <h2
+                      className="text-xl font-semibold capitalize 
+                      text-emerald-800 dark:text-sky-300"
+                    >
+                      {name}
+                    </h2>
+                    <h4 className="text-moss-600 dark:text-periwinkle-300">
+                      {company}
+                    </h4>
                   </div>
-                  <p className="text-muted-foreground text-lg md:ml-auto">
+                  <p className="text-amber-800 dark:text-cyan-400 text-lg md:ml-auto font-medium">
                     {dollarsAmount}
                   </p>
                 </CardContent>

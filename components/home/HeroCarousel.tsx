@@ -22,7 +22,11 @@ const HeroCarousel = () => {
           {carouselImages.map((image, index) => (
             <CarouselItem key={index}>
               <div className="p-1">
-                <Card>
+                <Card
+                  className="bg-white/85 dark:bg-slate-900/80 backdrop-blur-sm
+                  border border-emerald-700/30 dark:border-blue-300/20 
+                  shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
+                >
                   <CardContent className="flex aspect-square items-center justify-center p-6">
                     <Image
                       src={image}
@@ -35,8 +39,14 @@ const HeroCarousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious
+          className="bg-emerald-600/90 hover:bg-emerald-700/90 text-white
+          dark:bg-blue-600/90 dark:hover:bg-blue-700/90"
+        />
+        <CarouselNext
+          className="bg-emerald-600/90 hover:bg-emerald-700/90 text-white
+          dark:bg-blue-600/90 dark:hover:bg-blue-700/90"
+        />
       </Carousel>
     </div>
   );
