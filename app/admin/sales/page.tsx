@@ -1,3 +1,4 @@
+import SalesCardContainer from "@/components/sales/SalesCardContainer";
 import {
   Table,
   TableBody,
@@ -16,6 +17,7 @@ const SalesPage = async () => {
 
   return (
     <div>
+      <SalesCardContainer />
       <Table>
         <TableCaption>Total orders : {orders.length}</TableCaption>
         <TableHeader>
