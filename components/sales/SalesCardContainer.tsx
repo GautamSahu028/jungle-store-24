@@ -1,10 +1,4 @@
-import {
-  AlertTriangle,
-  Calendar,
-  Package,
-  ShoppingCart,
-  TrendingUp,
-} from "lucide-react";
+import { Calendar, Package, ShoppingCart, TrendingUp } from "lucide-react";
 import React from "react";
 import SalesCard from "./SalesCard";
 
@@ -54,62 +48,6 @@ const cardData = [
     valueColor: "text-purple-600",
     className: "col-span-1",
   },
-];
-
-const recentSales = [
-  {
-    id: 1,
-    product: "Safari Hat",
-    customer: "John Doe",
-    amount: "₹1,250",
-    date: "2025-03-19",
-  },
-  {
-    id: 2,
-    product: "Jungle Boots",
-    customer: "Jane Smith",
-    amount: "₹3,499",
-    date: "2025-03-18",
-  },
-  {
-    id: 3,
-    product: "Compass",
-    customer: "Robert Johnson",
-    amount: "₹780",
-    date: "2025-03-18",
-  },
-  {
-    id: 4,
-    product: "Water Bottle",
-    customer: "Emily Brown",
-    amount: "₹450",
-    date: "2025-03-17",
-  },
-];
-
-const stockAlerts = [
-  {
-    id: 1,
-    product: "Safari Hat",
-    currentStock: 5,
-    minStock: 10,
-    status: "Low",
-  },
-  {
-    id: 2,
-    product: "Jungle Boots",
-    currentStock: 3,
-    minStock: 10,
-    status: "Critical",
-  },
-  {
-    id: 3,
-    product: "Flashlight",
-    currentStock: 6,
-    minStock: 15,
-    status: "Low",
-  },
-  { id: 4, product: "Tent", currentStock: 2, minStock: 5, status: "Low" },
 ];
 
 const SalesCardContainer = () => {

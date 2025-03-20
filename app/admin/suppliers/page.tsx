@@ -8,10 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import React from "react";
-import Link from "next/link";
 import { IconButton } from "@/components/form/Buttons";
-import FormContainer from "@/components/form/FormContainer";
-import { toast } from "sonner";
 
 // Define the Supplier type
 interface Supplier {

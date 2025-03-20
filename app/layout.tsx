@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Container from "@/components/global/Container";
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
+import { ThemeBackground } from "@/components/theme/theme-background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,8 +41,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
-            <Container className="py-20">{children}</Container>
+            <ThemeBackground>
+              <Navbar />
+              <Container className="py-20">{children}</Container>
+            </ThemeBackground>
           </ThemeProvider>
         </body>
       </html>
