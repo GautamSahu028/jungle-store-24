@@ -39,14 +39,28 @@ function SelectProductAmount(
         onValueChange={(value) => setAmount(Number(value))}
         disabled={cartItem ? props.isLoading : false}
       >
-        <SelectTrigger className={cartItem ? "w-[100px]" : "w-[150px]"}>
+        <SelectTrigger
+          className={
+            cartItem
+              ? "w-[100px] dark:border-white/80"
+              : "w-[150px] dark:border-white/80"
+          }
+        >
           <SelectValue placeholder={amount} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent
+          className="bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
+        >
           {Array.from({ length: cartItem ? amount + 10 : 10 }, (_, index) => {
             const selectValue = (index + 1).toString();
             return (
-              <SelectItem key={index} value={selectValue}>
+              <SelectItem
+                key={index}
+                value={selectValue}
+                className="hover:cursor-pointer dark:hover:bg-white/60 dark:hover:text-[#030619] data-[state=checked]:bg-white/60 data-[state=checked]:text-[#030619]"
+              >
                 {selectValue}
               </SelectItem>
             );
