@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { VscCode } from "react-icons/vsc";
+import { Palmtree } from "lucide-react";
 
 const Logo = () => {
   return (
-    <Button asChild>
-      <Link href="/">
-        <VscCode className="w-6 h-6" />
-      </Link>
-    </Button>
+    <Link href="/">
+      <div className="flex items-center space-x-2">
+        <Palmtree className="text-amber-400 dark:text-[#5FFFB5]" size={32} />
+        <span className="text-2xl font-bold text-white">Jungle Treasures</span>
+      </div>
+    </Link>
   );
 };
 

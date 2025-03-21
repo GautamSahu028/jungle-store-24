@@ -19,7 +19,7 @@ const DarkMode = () => {
       size="icon"
       onClick={toggleTheme}
       aria-label="Toggle theme"
-      className="flex justify-center items-center relative bg-white/40 backdrop-blur-sm hover:bg-white/30 border-0 text-white dark:bg-white/10"
+      className="flex justify-center items-center relative bg-[#072611]/60 backdrop-blur-sm hover:bg-white/30 border-0 text-white dark:bg-slate-900/20 dark:hover:bg-white/10"
     >
       <Sun
         className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-white"

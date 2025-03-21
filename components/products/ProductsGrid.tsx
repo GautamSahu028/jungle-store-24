@@ -21,7 +21,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products }) => {
             <Link href={`/products/${productId}`}>
               <Card
                 className="transform group-hover:shadow-xl transition-shadow duration-500
-                bg-white/85 dark:bg-slate-900/80 backdrop-blur-sm
+                bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
                 border border-emerald-700/30 dark:border-blue-300/20 
                 shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
               >
@@ -39,13 +39,13 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products }) => {
                   <div className="mt-4 text-center">
                     <h2
                       className="text-lg capitalize font-medium
-                      text-emerald-800 dark:text-sky-300"
+                      text-[#DEE866] dark:text-sky-300"
                     >
                       {name}
                     </h2>
                     <p
                       className="mt-2 font-medium
-                      text-amber-800 dark:text-cyan-400"
+                      text-[#D4E300] dark:text-cyan-400"
                     >
                       {dollarsAmount}
                     </p>

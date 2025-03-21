@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import HeroCarousel from "./HeroCarousel";
+import { Package } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -19,12 +20,18 @@ const Hero = () => {
         <Button
           asChild
           size="lg"
-          className="mt-10 rounded-lg bg-[rgba(76,175,80,0.9)] text-[#FFFAF0] transition-all 
+          className="mt-10 rounded-lg bg-[#18401A] text-[#FFFAF0] transition-all 
              hover:bg-[rgba(56,142,60,1)] hover:shadow-lg hover:shadow-green-500/50
              dark:bg-[rgba(0,206,209,0.8)] dark:text-black dark:hover:bg-[rgba(57,255,20,0.9)]
              dark:hover:shadow-lg dark:hover:shadow-cyan-400/50"
         >
-          <Link href="/products">Our Products</Link>
+          <div className="text-left">
+            <Package
+              className="w-6 h-6 text-white dark:text-black"
+              strokeWidth={3.5}
+            />
+            <Link href="/products">Our Products</Link>
+          </div>
         </Button>
       </div>
       <HeroCarousel />
