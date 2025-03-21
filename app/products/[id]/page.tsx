@@ -41,11 +41,16 @@ export default async function Page({
           />
         </div>
         {/* PRODUCT INFO SECOND COL */}
-        <div>
-          <div className="flex gap-x-8 items-center">
+        <div className="dark:text-white/90">
+          <div className="flex gap-x-8 items-center dark:">
             <h1 className="capitalize text-3xl font-bold">{name}</h1>
             <div className="flex items-center gap-x-2">
-              <FavoriteToggleButton productId={id} />
+              <FavoriteToggleButton
+                productId={id}
+                className="bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)] dark:text-white/80"
+              />
               <ShareButton name={product.name} productId={id} />
             </div>
           </div>
@@ -58,7 +63,7 @@ export default async function Page({
           >
             {dollarsAmount}
           </p>
-          <p className="mt-6 leading-8 text-muted-foreground">{description}</p>
+          <p className="mt-6 leading-8">{description}</p>
           <AddToCart productId={id} />
         </div>
       </div>

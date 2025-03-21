@@ -9,11 +9,13 @@ import { CardSubmitButton } from "../form/Buttons";
 type FavoriteToggleFormProps = {
   favoriteId: string | null;
   productId: string;
+  className?: string;
 };
 
 const FavoriteToggleForm: React.FC<FavoriteToggleFormProps> = ({
   favoriteId,
   productId,
+  className,
 }) => {
   const pathname = usePathname();
   const toggleAction = toggleFavoriteAction.bind(null, {
@@ -23,7 +25,10 @@ const FavoriteToggleForm: React.FC<FavoriteToggleFormProps> = ({
   });
   return (
     <FormContainer action={toggleAction}>
-      <CardSubmitButton isFavorite={favoriteId ? true : false} />
+      <CardSubmitButton
+        isFavorite={favoriteId ? true : false}
+        className={className}
+      />
     </FormContainer>
   );
 };
