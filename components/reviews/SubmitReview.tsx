@@ -16,13 +16,20 @@ const SubmitReview = ({ productId }: { productId: string }) => {
     <div>
       <Button
         size="lg"
-        className="capitalize"
+        className="capitalize rounded-lg bg-[#18401A] text-[#FFFAF0] transition-all 
+             hover:bg-[rgba(56,142,60,1)] hover:shadow-lg hover:shadow-green-500/50
+             dark:bg-[rgba(0,206,209,0.8)] dark:text-black dark:hover:bg-[rgba(57,255,20,0.9)]
+             dark:hover:shadow-lg dark:hover:shadow-cyan-400/50"
         onClick={() => setIsReviewFormVisible((prev) => !prev)}
       >
         leave review
       </Button>
       {isReviewFormVisible && (
-        <Card className="p-8 mt-8">
+        <Card
+          className="p-8 mt-8 bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
+        >
           <FormContainer action={createReviewAction}>
             <input type="hidden" name="productId" value={productId} />
             <input

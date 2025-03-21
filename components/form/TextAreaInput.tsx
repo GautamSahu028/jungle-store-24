@@ -23,7 +23,7 @@ const TextAreaInput = ({
         defaultValue={defaultValue}
         rows={5}
         required
-        className="leading-loose"
+        className="leading-loose dark:border-white/60"
       />
     </div>
   );

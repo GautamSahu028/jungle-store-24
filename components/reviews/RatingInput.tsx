@@ -25,7 +25,7 @@ const RatingInput = ({
         {labelText || name}
       </Label>
       <Select defaultValue={numbers[0]} name={name} required>
-        <SelectTrigger>
+        <SelectTrigger className="dark:border-white/60">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
