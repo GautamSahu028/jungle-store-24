@@ -54,6 +54,8 @@ const VisitUs = () => {
                 src="https://images.unsplash.com/photo-1542401886-65d6c61db217?auto=format&fit=crop&q=80&w=1780"
                 alt="Our Store"
                 className="absolute inset-0 w-full h-full object-cover"
+                width={72}
+                height={72}
               />
             </div>
           </div>

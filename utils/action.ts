@@ -619,7 +619,7 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
   } catch (error) {
     return renderError(error);
   }
-  redirect(`/orders`);
+  redirect(`/checkout?orderId=${orderId}&cartId=${cartId}`);
 };
 
 export const fetchUserOrders = async () => {
