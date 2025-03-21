@@ -67,7 +67,10 @@ export const IconButton = ({ actionType }: { actionType: actionType }) => {
       type="submit"
       size="icon"
       variant="link"
-      className="p-2 cursor-pointer"
+      className={cn(
+        "p-2 cursor-pointer",
+        actionType === "delete" ? "text-red-400" : "text-white/90"
+      )}
     >
       {pending ? <ReloadIcon className=" animate-spin" /> : renderIcon()}
     </Button>

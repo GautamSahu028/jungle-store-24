@@ -19,6 +19,7 @@ const PriceInput = ({ defaultValue }: FormInputNumberProps) => {
         min={0}
         defaultValue={defaultValue || 100}
         required
+        className="border-white/90"
       />
     </div>
   );

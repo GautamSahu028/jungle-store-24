@@ -28,6 +28,7 @@ const FormInput = ({
         defaultValue={defaultValue}
         placeholder={placeholder}
         required
+        className="border-white/90"
       />
     </div>
   );

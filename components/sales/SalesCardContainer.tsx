@@ -45,7 +45,6 @@ const cardData = [
     ),
     title: "Revenue Growth",
     value: "+24%",
-    valueColor: "text-purple-600",
     className: "col-span-1",
   },
 ];
@@ -59,7 +58,6 @@ const SalesCardContainer = () => {
           icon={card.icon}
           title={card.title}
           value={card.value}
-          valueColor={card.valueColor}
           className={card.className}
         />
       ))}

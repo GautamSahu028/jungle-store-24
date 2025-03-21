@@ -31,7 +31,7 @@ export function StatsCard({
   return (
     <ReportsCard>
       <div className="flex justify-between items-start mb-4">
-        <span className="text-gray-600 font-medium">{title}</span>
+        <span className="text-white/90 font-medium">{title}</span>
         <div className={`p-2 rounded-full ${iconBgColor}`}>
           <Icon className={`w-5 h-5 ${iconColor}`} />
         </div>

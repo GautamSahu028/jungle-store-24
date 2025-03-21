@@ -21,7 +21,7 @@ export function ProductCard({ name, unitsSold, revenue }: ProductCardProps) {
             <p className="text-sm text-gray-500">{unitsSold} units sold</p>
           </div>
         </div>
-        <span className="text-lg font-semibold text-green-600">{revenue}</span>
+        <span className="text-lg font-semibold text-white/90">{revenue}</span>
       </div>
     </ReportsCard>
   );

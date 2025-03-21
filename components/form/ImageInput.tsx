@@ -8,7 +8,14 @@ const ImageInput = () => {
       <Label htmlFor={name} className="capitalize">
         Image
       </Label>
-      <Input id={name} name={name} type="file" required accept="image/*" />
+      <Input
+        id={name}
+        name={name}
+        type="file"
+        required
+        accept="image/*"
+        className="border-white/90"
+      />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/table";
 import React from "react";
 import { IconButton } from "@/components/form/Buttons";
+import { Card, CardContent } from "@/components/ui/card";
 
 // Define the Supplier type
 interface Supplier {
@@ -58,44 +59,52 @@ const suppliers: Supplier[] = [
 
 const SuppliersPage = () => {
   return (
-    <div>
-      <Table>
-        <TableCaption>Total suppliers: {suppliers.length}</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Name</TableHead>
-            <TableHead>Coordinator</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Phone</TableHead>
-            <TableHead>Address</TableHead>
-            <TableHead>Action</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {suppliers.map((supplier) => {
-            const { id, name, coordinator, email, phone, address } = supplier;
+    <Card
+      className="text-white bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
+    >
+      <CardContent>
+        <Table>
+          <TableCaption className="text-gray-300">
+            Total suppliers: {suppliers.length}
+          </TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="text-gray-300">Name</TableHead>
+              <TableHead className="text-gray-300">Coordinator</TableHead>
+              <TableHead className="text-gray-300">Email</TableHead>
+              <TableHead className="text-gray-300">Phone</TableHead>
+              <TableHead className="text-gray-300">Address</TableHead>
+              <TableHead className="text-gray-300">Action</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {suppliers.map((supplier) => {
+              const { id, name, coordinator, email, phone, address } = supplier;
 
-            return (
-              <TableRow key={id}>
-                <TableCell>{name}</TableCell>
-                <TableCell>{coordinator}</TableCell>
-                <TableCell>{email}</TableCell>
-                <TableCell>{phone}</TableCell>
-                <TableCell>{address}</TableCell>
-                <TableCell className="flex items-center gap-x-2">
-                  <div>
-                    <IconButton actionType="edit"></IconButton>
-                  </div>
-                  <div>
-                    <IconButton actionType="delete"></IconButton>
-                  </div>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </div>
+              return (
+                <TableRow key={id}>
+                  <TableCell>{name}</TableCell>
+                  <TableCell>{coordinator}</TableCell>
+                  <TableCell>{email}</TableCell>
+                  <TableCell>{phone}</TableCell>
+                  <TableCell>{address}</TableCell>
+                  <TableCell className="flex items-center gap-x-2">
+                    <div>
+                      <IconButton actionType="edit"></IconButton>
+                    </div>
+                    <div>
+                      <IconButton actionType="delete"></IconButton>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
   );
 };
 
