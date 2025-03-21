@@ -16,7 +16,11 @@ type ReviewCardProps = {
 
 const ReviewCard = ({ reviewInfo, children }: ReviewCardProps) => {
   return (
-    <Card className="relative">
+    <Card
+      className="relative text-white/90 bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
+    >
       <CardHeader>
         <div className="flex items-center">
           <Image

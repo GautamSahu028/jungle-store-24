@@ -14,7 +14,7 @@ const TextAreaInput = ({
 }: TextAreaInputProps) => {
   return (
     <div className="mb-2">
-      <Label htmlFor={name} className="capitalize">
+      <Label htmlFor={name} className="capitalize text-white/90">
         {labelText || name}
       </Label>
       <Textarea
@@ -23,7 +23,7 @@ const TextAreaInput = ({
         defaultValue={defaultValue}
         rows={5}
         required
-        className="leading-loose dark:border-white/60"
+        className="leading-loose dark:border-white/60 text-white/90"
       />
     </div>
   );

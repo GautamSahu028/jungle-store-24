@@ -37,12 +37,12 @@ export default async function Page({
             fill
             sizes="(max-width:768px) 100vw,(max-width:1200px) 50vw,33vw"
             priority
-            className="w-full rounded-md object-cover"
+            className="w-full rounded-md object-cover rounded-md"
           />
         </div>
         {/* PRODUCT INFO SECOND COL */}
-        <div className="dark:text-white/90">
-          <div className="flex gap-x-8 items-center dark:">
+        <div className="">
+          <div className="flex gap-x-8 items-center dark:text-white/90">
             <h1 className="capitalize text-3xl font-bold">{name}</h1>
             <div className="flex items-center gap-x-2">
               <FavoriteToggleButton
