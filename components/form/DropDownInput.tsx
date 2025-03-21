@@ -19,7 +19,7 @@ const DropDownInput = ({
         {label}
       </Label>
       <Select defaultValue={defaultValue} name={name}>
-        <SelectTrigger className="bg-emerald-950/30 dark:bg-slate-800/60 focus:ring-emerald-500/50 dark:focus:ring-blue-500/50">
+        <SelectTrigger className="dark:border-white/60">
           <SelectValue placeholder={`Select ${label.toLowerCase()}`} />
         </SelectTrigger>
         <SelectContent

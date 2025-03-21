@@ -19,7 +19,7 @@ export default async function Page({
 }) {
   const id = (await params).id;
   const product = await fetchSingleProduct(id);
-  const { name, image, company, description, price } = product;
+  const { name, image, company, description, price, quantity } = product;
   const dollarsAmount = formatCurrency(price);
   const { userId } = auth();
   const reviewDoesNotExist =
@@ -56,13 +56,24 @@ export default async function Page({
           </div>
           <ProductRating productId={id} />
           <h4 className="text-xl mt-2">{company}</h4>
-          <p
-            className="mt-3 text-md inline-block p-2 rounded-md bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
+          <div className="flex gap-x-4">
+            <p
+              className="mt-3 text-md inline-block p-2 rounded-md bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
                 border border-emerald-700/30 dark:border-blue-300/20 
                 shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
-          >
-            {dollarsAmount}
-          </p>
+            >
+              {dollarsAmount}
+            </p>
+            <p
+              className={`mt-3 text-md inline-block p-2 rounded-md bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)] ${
+                  quantity > 0 ? "text-[#5DFFB3]" : "text-red-200"
+                }`}
+            >
+              {quantity > 0 ? `Hurry! ${quantity} left` : "Out of Stock"}
+            </p>
+          </div>
           <p className="mt-6 leading-8">{description}</p>
           <AddToCart productId={id} />
         </div>
