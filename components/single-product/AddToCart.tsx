@@ -18,7 +18,12 @@ export const AddToCart = ({
   console.log("productId from AddToCart : ", productId);
   const [amount, setAmount] = useState(1);
   const { userId } = useAuth();
-  const isButtonDisabled = amount === 0;
+  const isButtonDisabled = quantity === 0 || amount > quantity;
+  const buttonText = isButtonDisabled
+    ? quantity === 0
+      ? "Out of Stock"
+      : "Insufficient quantity"
+    : "Add to cart";
   return (
     <div className="mt-4">
       <SelectProductAmount
@@ -31,7 +36,7 @@ export const AddToCart = ({
           <input type="hidden" name="productId" value={productId} />
           <input type="hidden" name="amount" value={amount} />
           <SubmitButton
-            text="add to cart"
+            text={buttonText}
             size="default"
             className="mt-8"
             disabled={isButtonDisabled}

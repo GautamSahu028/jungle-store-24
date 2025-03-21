@@ -68,7 +68,7 @@ export default async function Page({
               className={`mt-3 text-md inline-block p-2 rounded-md bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
                 border border-emerald-700/30 dark:border-blue-300/20 
                 shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)] ${
-                  quantity > 0 ? "text-[#5DFFB3]" : "text-red-200"
+                  quantity > 0 ? "text-[#5DFFB3]" : "text-red-400/90"
                 }`}
             >
               {quantity > 0 ? `Hurry! ${quantity} left` : "Out of Stock"}

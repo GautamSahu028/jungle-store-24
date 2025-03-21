@@ -16,6 +16,35 @@ export const GET = async (req: NextRequest) => {
     const orderId = session.metadata?.orderId;
     const cartId = session.metadata?.cartId;
     if (session.status === "complete") {
+      // First, get the cart with all its items before deleting it
+      const cart = await db.cart.findUnique({
+        where: { id: cartId },
+        include: {
+          cartItems: {
+            include: {
+              product: true,
+            },
+          },
+        },
+      });
+
+      if (cart) {
+        // Update product quantities
+        for (const cartItem of cart.cartItems) {
+          await db.product.update({
+            where: { id: cartItem.productId },
+            data: {
+              // Reduce the product quantity by the purchased amount
+              // Make sure it doesn't go below 0
+              quantity: {
+                decrement: cartItem.amount,
+              },
+            },
+          });
+        }
+      }
+
+      // Update order status
       await db.order.update({
         where: {
           id: orderId,
@@ -24,6 +53,8 @@ export const GET = async (req: NextRequest) => {
           isPaid: true,
         },
       });
+
+      // Delete the cart
       await db.cart.delete({
         where: {
           id: cartId,
