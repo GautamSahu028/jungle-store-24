@@ -1,7 +1,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import React from "react";
+import Image from "next/image";
 import SectionTitle from "../global/SectionTitle";
-import { Card, CardContent } from "../ui/card";
 
 const VisitUs = () => {
   return (
@@ -50,7 +50,7 @@ const VisitUs = () => {
               </div>
             </div>
             <div className="relative h-[300px] md:h-auto rounded-xl overflow-hidden">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1542401886-65d6c61db217?auto=format&fit=crop&q=80&w=1780"
                 alt="Our Store"
                 className="absolute inset-0 w-full h-full object-cover"

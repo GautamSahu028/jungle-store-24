@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { VscCode } from "react-icons/vsc";
 import { Palmtree } from "lucide-react";
 
 const Logo = () => {

@@ -6,7 +6,6 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import React from "react";
 import { fetchAllProducts } from "@/utils/action";
-import SectionTitle from "../global/SectionTitle";
 
 interface ProductsContainerProps {
   layout: string;
