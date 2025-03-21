@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import React from "react";
 import { fetchAllProducts } from "@/utils/action";
+import SectionTitle from "../global/SectionTitle";
 
 interface ProductsContainerProps {
   layout: string;
@@ -25,7 +26,7 @@ const ProductsContainer: React.FC<ProductsContainerProps> = async ({
       {/* HEADER */}
       <section>
         <div className="flex justify-between items-center">
-          <h4 className="font-medium text-lg">
+          <h4 className="font-medium text-[#051F20]/90 dark:text-[#D6E4F0]/90 text-lg text-lg">
             {totalProducts} product{totalProducts > 1 && "s"}
           </h4>
           <div className="flex gap-x-4">
@@ -49,7 +50,7 @@ const ProductsContainer: React.FC<ProductsContainerProps> = async ({
             </Button>
           </div>
         </div>
-        <Separator className="mt-4" />
+        <Separator className="mt-6 bg-white/30 backdrop-blur-sm h-0.5 border-0 dark:bg-slate-700/40" />
       </section>
       {/* PRODUCTS */}
       <div>

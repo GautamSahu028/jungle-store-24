@@ -14,7 +14,11 @@ const LoadingContainer = () => {
 
 const LoadingProduct = () => {
   return (
-    <Card>
+    <Card
+      className="bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
+    >
       <CardContent className="p-4">
         <Skeleton className="h-48 w-full rounded-md" />
         <Skeleton className="h-4 w-3/4 mt-4" />

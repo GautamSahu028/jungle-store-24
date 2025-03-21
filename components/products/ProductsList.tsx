@@ -22,7 +22,7 @@ const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
             <Link href={`/products/${productId}`}>
               <Card
                 className="transform group-hover:shadow-xl transition-shadow duration-500
-                bg-white/85 dark:bg-slate-900/80 backdrop-blur-sm
+                bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
                 border border-emerald-700/30 dark:border-blue-300/20 
                 shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
               >
@@ -41,15 +41,15 @@ const ProductsList: React.FC<ProductsListProps> = ({ products }) => {
                   <div>
                     <h2
                       className="text-xl font-semibold capitalize 
-                      text-emerald-800 dark:text-sky-300"
+                      text-[#DEE866] dark:text-sky-300"
                     >
                       {name}
                     </h2>
-                    <h4 className="text-moss-600 dark:text-periwinkle-300">
+                    <h4 className="text-[#F2F9CC] dark:text-periwinkle-300">
                       {company}
                     </h4>
                   </div>
-                  <p className="text-amber-800 dark:text-cyan-400 text-lg md:ml-auto font-medium">
+                  <p className="text-[#D4E300] dark:text-cyan-400 text-lg md:ml-auto font-medium">
                     {dollarsAmount}
                   </p>
                 </CardContent>
