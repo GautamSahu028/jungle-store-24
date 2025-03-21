@@ -16,20 +16,24 @@ type SubmitButtonProps = {
   className?: string;
   text?: string;
   size?: btnSize;
+  disabled?: boolean;
 };
 
 export const SubmitButton = ({
   className = "",
   text = "submit",
   size = "lg",
+  disabled = false,
 }: SubmitButtonProps) => {
   const { pending } = useFormStatus();
   return (
     <Button
       type="submit"
-      disabled={pending}
+      disabled={pending || disabled}
       className={cn(
         "capitalize mt-10 rounded-lg bg-[#18401A] text-[#FFFAF0] transition-all hover:bg-[rgba(56,142,60,1)] hover:shadow-lg hover:shadow-green-500/50 dark:bg-[rgba(0,206,209,0.8)] dark:text-black dark:hover:bg-[rgba(57,255,20,0.9)] dark:hover:shadow-lg dark:hover:shadow-cyan-400/50",
+        disabled &&
+          "opacity-50 hover:bg-[#18401A] hover:shadow-none dark:hover:bg-[rgba(0,206,209,0.8)] dark:hover:shadow-none cursor-not-allowed",
         className
       )}
       size={size}

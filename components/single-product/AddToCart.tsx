@@ -8,10 +8,17 @@ import { addToCartAction } from "@/utils/action";
 import { useAuth } from "@clerk/nextjs";
 import { ProductSignInButton } from "../form/Buttons";
 
-export const AddToCart = ({ productId }: { productId: string }) => {
+export const AddToCart = ({
+  productId,
+  quantity,
+}: {
+  productId: string;
+  quantity: number;
+}) => {
   console.log("productId from AddToCart : ", productId);
   const [amount, setAmount] = useState(1);
   const { userId } = useAuth();
+  const isButtonDisabled = amount === 0;
   return (
     <div className="mt-4">
       <SelectProductAmount
@@ -23,7 +30,12 @@ export const AddToCart = ({ productId }: { productId: string }) => {
         <FormContainer action={addToCartAction}>
           <input type="hidden" name="productId" value={productId} />
           <input type="hidden" name="amount" value={amount} />
-          <SubmitButton text="add to cart" size="default" className="mt-8" />
+          <SubmitButton
+            text="add to cart"
+            size="default"
+            className="mt-8"
+            disabled={isButtonDisabled}
+          />
         </FormContainer>
       ) : (
         <ProductSignInButton />

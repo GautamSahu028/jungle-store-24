@@ -75,7 +75,7 @@ export default async function Page({
             </p>
           </div>
           <p className="mt-6 leading-8">{description}</p>
-          <AddToCart productId={id} />
+          <AddToCart productId={id} quantity={quantity} />
         </div>
       </div>
       <ProductReviews productId={id} />
