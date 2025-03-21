@@ -10,7 +10,11 @@ const CartTotals = ({ cart }: { cart: Cart }) => {
   const { cartTotal, shipping, tax, orderTotal } = cart;
   return (
     <div>
-      <Card className="p-8 ">
+      <Card
+        className="p-8 bg-[#072611]/60 dark:bg-slate-900/80 backdrop-blur-sm
+                border border-emerald-700/30 dark:border-blue-300/20 
+                shadow-[0_4px_12px_rgba(34,139,34,0.15)] dark:shadow-[0_4px_12px_rgba(30,144,255,0.2)]"
+      >
         <CartTotalRow label="Subtotal" amount={cartTotal} />
         <CartTotalRow label="Shipping" amount={shipping} />
         <CartTotalRow label="Tax" amount={tax} />
@@ -36,11 +40,13 @@ function CartTotalRow({
 }) {
   return (
     <>
-      <p className="flex justify-between text-sm">
+      <p className="flex justify-between text-sm text-white/90">
         <span>{label}</span>
         <span>{formatCurrency(amount)}</span>
       </p>
-      {lastRow ? null : <Separator className="my-2" />}
+      {lastRow ? null : (
+        <Separator className="my-2 backdrop-blur-sm h-px border-0 bg-slate-200/40" />
+      )}
     </>
   );
 }
