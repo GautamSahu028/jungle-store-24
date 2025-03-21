@@ -8,6 +8,7 @@ import { SubmitButton } from "@/components/form/Buttons";
 import CheckBoxInput from "@/components/form/CheckBoxInput";
 import { createProductAction } from "@/utils/action";
 import { Card, CardContent } from "@/components/ui/card";
+import DropDownInput from "@/components/form/DropDownInput";
 
 const CreateProductPage = () => {
   const name = faker.commerce.productName();
@@ -45,10 +46,10 @@ const CreateProductPage = () => {
               labelText="product description"
               defaultValue={description}
             />
-            <div className="mt-6">
+            <div className="mt-6 flex justify-between">
+              <DropDownInput name="quantity" label="Quantity" />
               <CheckBoxInput name="featured" label="featured" />
             </div>
-
             <SubmitButton text="Create Product" className="mt-8" />
           </FormContainer>
         </CardContent>

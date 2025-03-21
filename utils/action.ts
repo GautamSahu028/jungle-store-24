@@ -73,33 +73,55 @@ export const createProductAction = async (
   const user = await getAuthUser();
   try {
     const rawData = Object.fromEntries(formData);
-    // console.log("rawData : ", rawData);
-    // const validatedRawData = productSchema.safeParse(rawData);
-    // console.log("validatedRawData : ", validatedRawData);
-    // if (!validatedRawData.success) {
-    //   const errors = validatedRawData.error.errors.map((e) => e.message);
-    //   throw new Error(errors.join(","));
-    // }
     const file = formData.get("image") as File;
     const validatedFields = validateWithZodSchema(productSchema, rawData);
     const validatedFile = validateWithZodSchema(imageSchema, { image: file });
-    const fullPath = await uploadImage(validatedFile.image);
-    // console.log("Validate image : ", validatedFile);
-    // console.log("validatedData : ", validatedFields);
 
-    await db.product.create({
-      data: {
-        ...validatedFields,
-        image: fullPath,
+    // Extract quantity from form data and convert to number
+    const quantity = validatedFields.quantity;
+
+    // Check if product with same name and company already exists
+    const existingProduct = await db.product.findFirst({
+      where: {
+        name: validatedFields.name,
+        company: validatedFields.company,
         clerkId: user.id,
       },
     });
+
+    if (existingProduct) {
+      // Product exists, update quantity
+      await db.product.update({
+        where: {
+          id: existingProduct.id,
+        },
+        data: {
+          quantity: existingProduct.quantity + quantity,
+        },
+      });
+
+      return { message: "Product quantity updated successfully" };
+    } else {
+      // Product doesn't exist, create new product
+      const fullPath = await uploadImage(validatedFile.image);
+
+      await db.product.create({
+        data: {
+          ...validatedFields,
+          image: fullPath,
+          clerkId: user.id,
+          quantity: quantity,
+        },
+      });
+
+      return { message: "Product created successfully" };
+    }
   } catch (error) {
     return renderError(error);
   }
+
   redirect("/admin/products");
 };
-
 export const fetchAdminProducts = async () => {
   await getAdminUser();
   const products = await db.product.findMany({
