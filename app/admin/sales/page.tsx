@@ -27,15 +27,17 @@ const SalesPage = async () => {
       >
         <CardContent>
           <Table>
-            <TableCaption>Total orders : {orders.length}</TableCaption>
+            <TableCaption className="text-gray-300">
+              Total orders : {orders.length}
+            </TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead>Email</TableHead>
-                <TableHead>Products</TableHead>
-                <TableHead>Order Total</TableHead>
-                <TableHead>Tax</TableHead>
-                <TableHead>Shipping</TableHead>
-                <TableHead>Date</TableHead>
+                <TableHead className="text-gray-300">Email</TableHead>
+                <TableHead className="text-gray-300">Products</TableHead>
+                <TableHead className="text-gray-300">Order Total</TableHead>
+                <TableHead className="text-gray-300">Tax</TableHead>
+                <TableHead className="text-gray-300">Shipping</TableHead>
+                <TableHead className="text-gray-300">Date</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
