@@ -11,6 +11,7 @@ import {
 import { deleteImage, uploadImage } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { Cart } from "@prisma/client";
+import prisma from "@/utils/db";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -671,3 +672,190 @@ export const fetchAdminOrders = async () => {
   });
   return orders;
 };
+
+export const getTodayProductsSold = async () => {
+  try {
+    // Get current date (start of day)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Get end of today
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    // Aggregate products for paid orders created today
+    const result = await prisma.order.aggregate({
+      _sum: {
+        products: true,
+      },
+      where: {
+        isPaid: true,
+        createdAt: {
+          gte: today,
+          lt: tomorrow,
+        },
+      },
+    });
+
+    // Return the sum, defaulting to 0 if null
+    return result._sum.products || 0;
+  } catch (error) {
+    console.error("Error aggregating today's products:", error);
+    return 0;
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+export async function getTodayOrderTotal() {
+  try {
+    // Get current date (start of day)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Get end of today
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    // Aggregate orderTotal for paid orders created today
+    const result = await prisma.order.aggregate({
+      _sum: {
+        orderTotal: true,
+      },
+      where: {
+        isPaid: true,
+        createdAt: {
+          gte: today,
+          lt: tomorrow,
+        },
+      },
+    });
+
+    // Return the sum, defaulting to 0 if null
+    return result._sum.orderTotal || 0;
+  } catch (error) {
+    console.error("Error aggregating today's order total:", error);
+    return 0;
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+export async function getTotalOrderRevenue() {
+  try {
+    // Aggregate orderTotal for all paid orders
+    const result = await prisma.order.aggregate({
+      _sum: {
+        orderTotal: true,
+      },
+      where: {
+        isPaid: true,
+      },
+    });
+
+    // Return the sum, defaulting to 0 if null
+    return result._sum.orderTotal || 0;
+  } catch (error) {
+    console.error("Error aggregating total order revenue:", error);
+    return 0;
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+export async function getRevenueGrowth(period = "month") {
+  try {
+    const today = new Date();
+    let currentPeriodStart, previousPeriodStart, previousPeriodEnd;
+
+    // Set up date ranges based on period
+    if (period === "month") {
+      // Current month
+      currentPeriodStart = new Date(today.getFullYear(), today.getMonth(), 1);
+
+      // Previous month
+      previousPeriodStart = new Date(
+        today.getFullYear(),
+        today.getMonth() - 1,
+        1
+      );
+      previousPeriodEnd = new Date(today.getFullYear(), today.getMonth(), 0);
+    } else if (period === "week") {
+      // Current week (starting from Sunday)
+      const dayOfWeek = today.getDay();
+      currentPeriodStart = new Date(today);
+      currentPeriodStart.setDate(today.getDate() - dayOfWeek);
+      currentPeriodStart.setHours(0, 0, 0, 0);
+
+      // Previous week
+      previousPeriodStart = new Date(currentPeriodStart);
+      previousPeriodStart.setDate(currentPeriodStart.getDate() - 7);
+      previousPeriodEnd = new Date(currentPeriodStart);
+      previousPeriodEnd.setDate(previousPeriodEnd.getDate() - 1);
+      previousPeriodEnd.setHours(23, 59, 59, 999);
+    } else if (period === "day") {
+      // Today
+      currentPeriodStart = new Date(today);
+      currentPeriodStart.setHours(0, 0, 0, 0);
+
+      // Yesterday
+      previousPeriodStart = new Date(today);
+      previousPeriodStart.setDate(today.getDate() - 1);
+      previousPeriodStart.setHours(0, 0, 0, 0);
+      previousPeriodEnd = new Date(today);
+      previousPeriodEnd.setDate(today.getDate() - 1);
+      previousPeriodEnd.setHours(23, 59, 59, 999);
+    }
+
+    // Get current period revenue
+    const currentRevenue = await prisma.order.aggregate({
+      _sum: {
+        orderTotal: true,
+      },
+      where: {
+        isPaid: true,
+        createdAt: {
+          gte: currentPeriodStart,
+        },
+      },
+    });
+
+    // Get previous period revenue
+    const previousRevenue = await prisma.order.aggregate({
+      _sum: {
+        orderTotal: true,
+      },
+      where: {
+        isPaid: true,
+        createdAt: {
+          gte: previousPeriodStart,
+          lte:
+            previousPeriodEnd ||
+            (currentPeriodStart
+              ? new Date(currentPeriodStart.getTime() - 1)
+              : new Date()),
+        },
+      },
+    });
+
+    // Calculate growth rate
+    const currentValue = currentRevenue._sum.orderTotal || 0;
+    const previousValue = previousRevenue._sum.orderTotal || 0;
+
+    let growthRate = 0;
+    if (previousValue > 0) {
+      growthRate = ((currentValue - previousValue) / previousValue) * 100;
+    } else if (currentValue > 0) {
+      // If previous period had zero revenue but current has some,
+      // we can consider it infinite growth, but let's cap it
+      growthRate = 100;
+    }
+
+    return Number(growthRate.toFixed(1));
+  } catch (error) {
+    console.error(`Error calculating ${period} revenue growth:`, error);
+    return 0;
+  } finally {
+    await prisma.$disconnect();
+  }
+}

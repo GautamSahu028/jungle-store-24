@@ -7,6 +7,7 @@ import Container from "@/components/global/Container";
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeBackground } from "@/components/theme/theme-background";
+import ChatWidget from "@/components/chatBot/ChatBot";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +45,7 @@ export default function RootLayout({
             <ThemeBackground>
               <Navbar />
               <Container className="py-20">{children}</Container>
+              <ChatWidget />
             </ThemeBackground>
           </ThemeProvider>
         </body>
