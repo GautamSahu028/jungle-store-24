@@ -40,6 +40,9 @@ const LinksDropdown = () => {
             <SignInButton mode="modal">
               <button className="w-full text-left">Login</button>
             </SignInButton>
+            <SignInButton mode="modal">
+              <button className="w-full text-left">Login as admin</button>
+            </SignInButton>
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-gray-300/50" />
           <DropdownMenuItem className="hover:bg-white/60 text-white hover:text-black dark:hover:bg-white/60 dark:hover:text-[#030619]">
