@@ -14,7 +14,7 @@ const Footer = () => {
             <span className="text-white font-bold">Jungle Treasures</span>
           </div>
           <p className="text-gray-400">
-            © 2024 Jungle Treasures. All rights reserved.
+            © 2025 Jungle Treasures. All rights reserved.
           </p>
         </div>
       </div>

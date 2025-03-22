@@ -9,13 +9,13 @@ const Hero = () => {
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
       <div>
         <h1 className="max-w-2xl font-bold text-4xl tracking-tight sm:text-6xl text-[#051F20]/90 dark:text-[#D6E4F0]/90">
-          We are changing the way people shop
+          Bring the jungle adventure home with you
         </h1>
         <p className="mt-8 max-w-xl text-lg leading-8 text-[#051F20]/90 dark:text-[#D6E4F0]/90">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque et
-          voluptas saepe in quae voluptate, laborum maiores possimus illum
-          reprehenderit aut delectus veniam cum perferendis unde sint doloremque
-          non nam.
+          Discover unique handcrafted souvenirs that capture the wild beauty and
+          vibrant spirit of the jungle. Each piece tells a story of exotic
+          wildlife, lush landscapes, and unforgettable adventures waiting to be
+          remembered.
         </p>
         <Button
           asChild
@@ -30,7 +30,7 @@ const Hero = () => {
               className="w-6 h-6 text-white dark:text-black"
               strokeWidth={3.5}
             />
-            <Link href="/products">Our Products</Link>
+            <Link href="/products">Explore Souvenirs</Link>
           </div>
         </Button>
       </div>

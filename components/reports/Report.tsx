@@ -3,14 +3,25 @@ import { TrendingUp, BarChart3, Package, Users } from "lucide-react";
 import { StatsCard } from "./StatsCard";
 import { ReportsCard } from "./ReportsCard";
 import { ProductCard } from "./ProductCard";
+import {
+  getRevenueGrowth,
+  getTotalLoyalCustomer,
+  getTotalOrderRevenue,
+  getTotalProductsSold,
+} from "@/utils/action";
+import MonthlySalesPerformance from "./Charts";
 
-function Report() {
+async function Report() {
+  const totalRevenue = await getTotalOrderRevenue();
+  const revenueGrowth = await getRevenueGrowth();
+  const totalProductsSold = await getTotalProductsSold();
+  const totalUsers = await getTotalLoyalCustomer();
   return (
     <div className="min-h-screen p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <StatsCard
-          title="Total Revenue"
-          value="₹1,24,500"
+          title="Revenue Growth"
+          value={revenueGrowth}
           change={{ value: "+15% from last month", type: "increase" }}
           icon={TrendingUp}
           iconColor="text-green-600"
@@ -18,7 +29,7 @@ function Report() {
         />
         <StatsCard
           title="Total Sales"
-          value="450"
+          value={totalRevenue}
           change={{ value: "+8% from last month", type: "neutral" }}
           icon={BarChart3}
           iconColor="text-blue-600"
@@ -26,7 +37,7 @@ function Report() {
         />
         <StatsCard
           title="Products Sold"
-          value="1,250"
+          value={totalProductsSold}
           change={{ value: "+12% from last month", type: "increase" }}
           icon={Package}
           iconColor="text-purple-600"
@@ -34,7 +45,7 @@ function Report() {
         />
         <StatsCard
           title="New Customers"
-          value="85"
+          value={totalUsers}
           change={{ value: "+5% from last month", type: "increase" }}
           icon={Users}
           iconColor="text-orange-600"
@@ -45,8 +56,8 @@ function Report() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <ReportsCard className="lg:col-span-2">
           <h2 className="text-lg font-semibold mb-4">Sales Trend</h2>
-          <div className="h-64 flex items-center justify-center text-gray-500">
-            Sales Chart Coming Soon
+          <div className="h-64 text-gray-300">
+            <MonthlySalesPerformance />
           </div>
         </ReportsCard>
 

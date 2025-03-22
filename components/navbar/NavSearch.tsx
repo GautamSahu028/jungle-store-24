@@ -30,7 +30,7 @@ const NavSearch = () => {
     <Input
       type="search"
       className="max-w-xs rounded-md border-none bg-[#072611]/60 backdrop-blur-sm dark:bg-slate-800/90 placeholder:text-white/90 dark:placeholder:text-blue-200/90 placeholder:font-medium focus:ring-2 focus:ring-green-400/50 dark:focus:ring-blue-400/50 transition-all duration-200"
-      placeholder="search product..."
+      placeholder="        Search for products"
       onChange={(e) => {
         setSearch(e.target.value);
         handleSearch(e.target.value);

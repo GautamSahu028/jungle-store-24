@@ -1,6 +1,6 @@
 "use server";
 import db from "@/utils/db";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth, clerkClient, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import {
   imageSchema,
@@ -859,3 +859,80 @@ export async function getRevenueGrowth(period = "month") {
     await prisma.$disconnect();
   }
 }
+
+export const getTotalProductsSold = async () => {
+  try {
+    // Aggregate products for all paid orders
+    const result = await prisma.order.aggregate({
+      _sum: {
+        products: true,
+      },
+      where: {
+        isPaid: true,
+      },
+    });
+
+    // Return the sum, defaulting to 0 if null
+    return result._sum.products || 0;
+  } catch (error) {
+    console.error("Error aggregating total products:", error);
+    return 0;
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+export const getTotalLoyalCustomer = async () => {
+  try {
+    // Count all entries in the User schema
+    const totalUsers = await prisma.user.count();
+
+    // Return the total count
+    return totalUsers;
+  } catch (error) {
+    console.error("Error counting total users:", error);
+    return 0;
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+export const fetchLoyalCustomers = async () => {
+  // Get all users from the database
+  const users = await prisma.user.findMany({
+    orderBy: {
+      points: "desc", // Order by points in descending order
+    },
+  });
+
+  // For each user, fetch their Clerk data to get name and email
+  const customers = [];
+
+  for (const user of users) {
+    try {
+      // Fetch user data from Clerk using the clerkId
+      const clerkUser = await clerkClient.users.getUser(user.clerkId);
+
+      customers.push({
+        id: user.id.toString(),
+        name: `${clerkUser.firstName || ""} ${clerkUser.lastName || ""}`.trim(),
+        email: clerkUser.emailAddresses[0]?.emailAddress || "No email",
+        points: user.points,
+      });
+    } catch (error) {
+      console.error(
+        `Error fetching Clerk user for clerkId ${user.clerkId}:`,
+        error
+      );
+      // Add user with placeholder data if Clerk fetch fails
+      customers.push({
+        id: user.id.toString(),
+        name: "Unknown User",
+        email: "N/A",
+        points: user.points,
+      });
+    }
+  }
+
+  return customers;
+};

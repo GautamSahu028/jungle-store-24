@@ -29,8 +29,8 @@ const VisitUs = () => {
                     size={24}
                   />
                   <div className="text-gray-300">
-                    <p>123 Rainforest Way</p>
-                    <p>Amazon Grove, BR 12345</p>
+                    <p>Hostel-H</p>
+                    <p>NIT Raipur</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -38,7 +38,7 @@ const VisitUs = () => {
                     className="text-amber-400 dark:text-[#5FFFB5]"
                     size={24}
                   />
-                  <p className="text-gray-300">+1 (555) 123-4567</p>
+                  <p className="text-gray-300">+91 7205491375</p>
                 </div>
                 <div className="flex items-center space-x-4">
                   <Mail
@@ -51,11 +51,11 @@ const VisitUs = () => {
             </div>
             <div className="relative h-[300px] md:h-auto rounded-xl overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1542401886-65d6c61db217?auto=format&fit=crop&q=80&w=1780"
+                src="https://images.pexels.com/photos/975771/pexels-photo-975771.jpeg"
                 alt="Our Store"
                 className="absolute inset-0 w-full h-full object-cover"
-                width={72}
-                height={72}
+                width={1080}
+                height={200}
               />
             </div>
           </div>

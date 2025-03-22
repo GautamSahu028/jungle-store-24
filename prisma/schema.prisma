@@ -84,3 +84,10 @@ model Order {
   updatedAt DateTime @updatedAt
 }
 
+model User {
+  id        Int      @id @default(autoincrement())
+  clerkId   String   @unique
+  points    Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

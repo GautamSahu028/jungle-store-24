@@ -28,6 +28,44 @@ export const GET = async (req: NextRequest) => {
         },
       });
 
+      // Get the order to access the customer clerkId and orderTotal
+      const order = await db.order.findUnique({
+        where: { id: orderId },
+      });
+
+      if (!order) {
+        throw new Error("Order not found");
+      }
+
+      // Calculate loyalty points (orderTotal / 10)
+      const pointsToAdd = Math.floor(order.orderTotal / 10);
+
+      // Get the clerkId from the order
+      const clerkId = order.clerkId;
+
+      // Check if user exists
+      const existingUser = await db.user.findUnique({
+        where: { clerkId },
+      });
+
+      if (existingUser) {
+        // Update existing user's points
+        await db.user.update({
+          where: { clerkId },
+          data: {
+            points: { increment: pointsToAdd },
+          },
+        });
+      } else {
+        // Create new user with initial points
+        await db.user.create({
+          data: {
+            clerkId,
+            points: pointsToAdd,
+          },
+        });
+      }
+
       if (cart) {
         // Update product quantities
         for (const cartItem of cart.cartItems) {
