@@ -123,6 +123,7 @@ export const createProductAction = async (
 
   redirect("/admin/products");
 };
+
 export const fetchAdminProducts = async () => {
   await getAdminUser();
   const products = await db.product.findMany({
@@ -936,3 +937,51 @@ export const fetchLoyalCustomers = async () => {
 
   return customers;
 };
+
+// Fetch month-wise sales data.
+export async function getSalesData() {
+  const orders = await prisma.order.findMany({
+    where: {
+      isPaid: true,
+    },
+    select: {
+      orderTotal: true,
+      createdAt: true,
+    },
+  });
+
+  const monthlyTotalsMap: Record<string, number> = {};
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  orders.forEach((order) => {
+    const date = new Date(order.createdAt);
+    const monthName = monthNames[date.getMonth()];
+
+    if (monthlyTotalsMap[monthName]) {
+      monthlyTotalsMap[monthName] += order.orderTotal;
+    } else {
+      monthlyTotalsMap[monthName] = order.orderTotal;
+    }
+  });
+
+  const result = Object.entries(monthlyTotalsMap).map(([month, total]) => ({
+    month,
+    total,
+  }));
+
+  return result;
+}

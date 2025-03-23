@@ -5,7 +5,6 @@ import CartButton from "./CartButton";
 import NavSearch from "./NavSearch";
 import Container from "../global/Container";
 import { Suspense } from "react";
-import CustomScanBarCodeIcon from "../barCode/CustomScanBarCodeIcon";
 
 function Navbar() {
   return (
@@ -14,7 +13,6 @@ function Navbar() {
         <Logo />
         <Suspense>
           <NavSearch />
-          <CustomScanBarCodeIcon />
         </Suspense>
         <div className="flex gap-4 items-center">
           <CartButton />
